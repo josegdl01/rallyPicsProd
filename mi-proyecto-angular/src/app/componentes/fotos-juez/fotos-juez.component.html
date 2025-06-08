@@ -1,0 +1,32 @@
+<div class="container mt-4" *ngIf="publicaciones.length != 0">
+  <h2 class="mb-4">Fotos pendientes de validación</h2>
+
+  <div class="row">
+    <div *ngFor="let publicacion of publicaciones" class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img 
+          [src]="'data:image/jpeg;base64,' + publicacion.foto" 
+          alt="Foto del concursante"
+          class="card-img-top"
+          *ngIf="publicacion.foto">
+        <div class="d-flex align-items-center justify-content-center bg-light" style="height:200px;" *ngIf="!publicacion.foto">
+          <span class="text-muted">Imagen no disponible</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Descripción:</strong> {{ publicacion.descripcion || 'Sin descripción' }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-success btn-sm" (click)="validarFoto(true, publicacion)" [disabled]="sorteoCerrado">Aprobar</button>
+          <button class="btn btn-danger btn-sm" (click)="validarFoto(false, publicacion)" [disabled]="sorteoCerrado">Rechazar</button>
+        </div>
+        <div *ngIf="sorteoCerrado" class="alert alert-warning mt-3 text-center">
+          El sorteo está cerrado. Ya no se pueden validar fotos.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="publicaciones.length == 0" class="alert alert-info mt-4">
+  No hay fotos para validar
+</div>
+

@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Gestión de validaciones de jueces</h2>
+  <div *ngIf="jueces.length === 0" class="alert alert-info">
+    No hay jueces registrados.
+  </div>
+  <table class="table" *ngIf="jueces.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Puede Validar</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let juez of jueces">
+        <td>{{ juez.usuario.nombre }}</td>
+        <td>{{ juez.usuario.apellidos }}</td>
+        <td>{{ juez.usuario.email }}</td>
+        <td>
+          <span class="badge" [ngClass]="juez.puedeValidar ? 'bg-success' : 'bg-danger'">
+            {{ juez.puedeValidar ? 'Sí' : 'No' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-outline-primary btn-sm"
+                  (click)="togglePuedeValidar(juez)">
+            {{ juez.puedeValidar ? 'Deshabilitar' : 'Habilitar' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

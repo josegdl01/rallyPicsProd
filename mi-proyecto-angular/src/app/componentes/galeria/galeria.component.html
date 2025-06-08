@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Galería pública</h2>
+  <div *ngIf="publicaciones.length === 0" class="alert alert-info text-center">
+    No hay imágenes validadas aún.
+  </div>
+  <div *ngIf="publicaciones.length > 0" class="d-flex justify-content-center">
+    <div id="galeriaSlider" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px;">
+      <div class="carousel-inner">
+        <div *ngFor="let publicacion of publicaciones; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img [src]="'data:image/jpeg;base64,' + publicacion.fotoBase64"
+               class="d-block mx-auto"
+               alt="Imagen validada"
+               style="max-width: 420px; max-height: 280px; object-fit: contain; border-radius: 12px;">
+          <div class="carousel-caption d-none d-md-block">
+            <p class="bg-light bg-opacity-75 rounded px-2 text-dark">{{ publicacion.descripcion || 'Sin descripción' }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#galeriaSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#galeriaSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</div>

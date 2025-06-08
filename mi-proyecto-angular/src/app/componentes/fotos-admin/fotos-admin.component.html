@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Todas las fotos</h2>
+  
+  <div *ngIf="publicaciones.length === 0" class="alert alert-info">
+    No hay fotos disponibles
+  </div>
+
+  <div class="row">
+    <div *ngFor="let publicacion of publicaciones" class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img 
+          [src]="'data:image/jpeg;base64,' + publicacion.foto" 
+          alt="Foto"
+          class="card-img-top"
+          *ngIf="publicacion.foto">
+        <div class="d-flex align-items-center justify-content-center bg-light" style="height:200px;" *ngIf="!publicacion.foto">
+          <span class="text-muted">Imagen no disponible</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Descripción:</strong> {{ publicacion.descripcion || 'Sin descripción' }}</p>
+          <p>
+            <strong>Estado:</strong>
+            <span class="badge" [ngClass]="publicacion.validada ? 'bg-success' : 'bg-warning text-dark'">
+              {{ publicacion.validada ? 'Validada' : 'Pendiente de validación' }}
+            </span>
+          </p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <a class="btn btn-primary btn-sm" routerLink="/puntuacionPublicacion/publicacion.id">Ver puntuaciones</a>
+          <button class="btn btn-danger btn-sm" (click)="borrarFoto(publicacion.id)">Borrar foto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light mt-4 mx-auto" style="max-width: 400px;">
+  <h3 class="mb-4 text-center">Iniciar sesión</h3>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" id="email" class="form-control" formControlName="email">
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger small">
+      <span *ngIf="email?.errors?.['required']">{{mensajeCampos}}</span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña:</label>
+    <input type="password" id="password" class="form-control" formControlName="password">
+    <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger small">
+      <span *ngIf="password?.errors?.['required']">{{mensajeCampos}}</span>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="!registroForm.valid">Iniciar sesión</button>
+</form>
+<div class="text-center mt-3">
+  <a routerLink="/registro">¿No tienes cuenta? Regístrate</a>
+</div>
+<div *ngIf="mensajeError" class="alert alert-danger text-center">
+  {{ mensajeError }}
+</div>

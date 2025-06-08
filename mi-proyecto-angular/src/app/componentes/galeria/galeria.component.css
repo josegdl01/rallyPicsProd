@@ -1,0 +1,10 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(33, 37, 41, 0.7); /* fondo oscuro semitransparente */
+  border-radius: 50%;
+  border: 2px solid #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-size: 60% 60%;
+}
+

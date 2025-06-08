@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Puntuaciones de la publicación {{ publicacionId }}</h2>
+  <ul class="list-group" *ngIf="puntuaciones.length > 0; else sinPuntuaciones">
+    <li *ngFor="let p of puntuaciones" class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        <strong>Juez:</strong> {{ p.juez.id }}
+      </span>
+      <span class="badge bg-primary rounded-pill">
+        Nota: {{ p.nota }}
+      </span>
+    </li>
+  </ul>
+  <ng-template #sinPuntuaciones>
+    <div class="alert alert-info mt-3">
+      No hay puntuaciones para esta publicación.
+    </div>
+  </ng-template>
+</div>

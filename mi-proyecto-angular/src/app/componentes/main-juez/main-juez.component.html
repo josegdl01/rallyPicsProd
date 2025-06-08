@@ -1,0 +1,20 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">RallyPics</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" *ngIf="juez.puedeValidar">
+            <a class="nav-link" routerLink="/fotosJuez/{{juez.id}}">Validar fotos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/puntuarFotos/{{juez.id}}">Puntuar Fotos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/juezCuenta/{{juez.id}}">Gestionar mi cuenta</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

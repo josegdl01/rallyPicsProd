@@ -1,0 +1,31 @@
+<form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="p-4 border rounded bg-light mt-4 mx-auto" style="max-width: 500px;">
+  <div class="mb-3">
+    <label for="descripcion" class="form-label">Descripción:</label>
+    <input type="text" id="descripcion" formControlName="descripcion" class="form-control" required>
+    <div *ngIf="publicacionForm.get('descripcion')?.errors?.['required'] && publicacionForm.get('descripcion')?.touched"
+         class="text-danger small">
+      La descripción es obligatoria
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="foto" class="form-label">Selecciona una foto (JPG/PNG, máximo 10MB):</label>
+    <input type="file" id="foto" #fileInput (change)="onFileChange($event)" accept="image/jpeg, image/png" class="form-control" required>
+    
+    <div *ngIf="previewUrl" class="image-preview mt-3 text-center">
+      <img [src]="previewUrl" alt="Vista previa de la imagen" class="img-fluid rounded shadow" style="max-height: 250px;">
+    </div>
+    
+    <div *ngIf="errorMessage" class="text-danger small mt-2">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100"
+        [disabled]="!publicacionForm.valid || !fotoValida || sorteoCerrado">
+  Subir publicación
+</button>
+<div *ngIf="sorteoCerrado" class="alert alert-warning mt-3 text-center">
+  El sorteo está cerrado. Ya no se pueden subir fotos.
+</div>
+</form>
